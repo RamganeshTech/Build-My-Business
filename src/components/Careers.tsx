@@ -40,7 +40,7 @@ const Careers = () => {
             if (!form.fullName) e.fullName = "Full name is required";
             if (form.phone.length !== 10) e.phone = "Enter a valid 10-digit number";
             // if (!form.city) e.city = "City is required";
-            if (!form.salary) e.salary = "Required";
+            if (!form.salary) e.salary = "Please enter expected salary";
 
         }
         if (step === 1) {
@@ -51,20 +51,20 @@ const Careers = () => {
             if (!form.location) e.location = "Enter the Prefered locations";
         }
         if (step === 2) {
-            if (!form.roles) e.roles = "Required";
+            if (!form.roles) e.roles = "Please enter roles you have performed";
             if (!form.skills) e.skills = "Please list your skills";
-            if (!form.tasks) e.tasks = "Required";
+            if (!form.tasks) e.tasks = "Please mention the tasks you can perform";
             if (!form.languages) e.languages = "Languages are required";
         }
         if (step === 3) {
-            if (!form.projects) e.projects = "Required";
+            if (!form.projects) e.projects = "Please mention the projects you have worked on";
 
             if (!form.academic) e.academic = "Please provide academic details";
-            if (!form.family) e.family = "Required";
+            if (!form.family) e.family = "Please tell us about your family";
 
         }
         if (step === 4) {
-            if (!form.vehicle) e.vehicle = "Required";
+            if (!form.vehicle) e.vehicle = "Please select the option";
 
             if (!form.address) e.address = "Address is required";
         }
@@ -213,7 +213,7 @@ const Careers = () => {
                                         <Field label="Projects Worked On" error={errors.projects}>
                                             <textarea value={form.projects} onChange={(e) => handleChange("projects", e.target.value)} className={inputClass(errors.projects) + " h-32"} />
                                         </Field>
-                                        <Field label="About Yourself, and your Academic Performance (10th, 12th, UG, PG)" error={errors.academic}>
+                                        <Field label="About yourselves, your academic performance , marks scored in 10th,12th , UG and PG" error={errors.academic}>
                                             <textarea value={form.academic} onChange={(e) => handleChange("academic", e.target.value)} placeholder="Provide your score/CGPA for all levels..." className={inputClass(errors.academic) + " h-32"} />
                                         </Field>
                                         <Field label="Family Details (Parents, Siblings)" error={errors.family}>
