@@ -20,12 +20,12 @@ const Header = () => {
         <div className="flex justify-between items-center h-20">
 
           {/* Logo Section */}
-          <div className="flex-shrink-0 flex items-center">
-            <Link to="/">
+          <div className="flex-shrink-0 flex items-center ">
+            <Link to="/" className='outline-none'>
               <img
                 src="/logo.png"
                 alt="Build My Business Logo"
-                className="h-10 md:h-12 w-auto object-contain"
+                className="h-10 md:h-12  w-auto object-contain"
               />
             </Link>
           </div>
@@ -42,7 +42,7 @@ const Header = () => {
               </Link>
             ))}
 
-           
+
           </nav>
 
           {/* Mobile Menu Button */}
@@ -78,7 +78,7 @@ const Header = () => {
                   {link.name}
                 </Link>
               ))}
-              
+
             </div>
           </motion.div>
         )}

@@ -26,6 +26,7 @@ import Disclaimer from './components/Disclaimer';
 import AppPrivacy from './components/AppPrivacy';
 import RefundPolicy from './components/RefundPolicy';
 import ScrollToTop from './components/ScrollToTop';
+import HRSection from './components/HrSection';
 
 const App = () => {
   return (
@@ -49,6 +50,7 @@ const App = () => {
           <Route path="/career" element={<Careers />} />
           <Route path="/disclaimer" element={<Disclaimer />} />
           <Route path="/app-privacy" element={<AppPrivacy />} />
+          <Route path="/hr-section" element={<HRSection />} />
           <Route path="/refund-cancellation-policy" element={<RefundPolicy />} />
 
           {/* Optional: Add a 404 Redirect to Home */}

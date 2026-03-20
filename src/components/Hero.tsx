@@ -17,8 +17,26 @@ const Hero = () => {
     }
   };
 
+ const floatingIcons = [
+    { icon: "fa-chart-line", color: "text-orange-500", pos: "top-[-5%] left-[-80px] rotate-12" },
+    { icon: "fa-microchip", color: "text-indigo-500", pos: "bottom-[10%] left-[-100px] -rotate-12" },
+    { icon: "fa-shield-halved", color: "text-emerald-500", pos: "top-[10%] right-[-100px] -rotate-12" },
+    { icon: "fa-coins", color: "text-blue-500", pos: "bottom-[-5%] right-[-80px] rotate-12" },
+  ];
   return (
-    <section className="relative min-h-screen pt-20 flex items-center bg-white overflow-hidden">
+    <section className="relative min-h-screen pt-20 flex items-center bg-white overflow-hidden font-poppins">
+
+     {/* 1. LARGE WATERMARK ICONS (Half-Hidden) */}
+      {floatingIcons.map((item, idx) => (
+        <div
+          key={idx}
+          className={`absolute ${item.pos} text-[15rem] md:text-[22rem] opacity-[0.05] pointer-events-none z-0`}
+        >
+          <i className={`fa-solid ${item.icon} ${item.color}`}></i>
+        </div>
+      ))}
+
+
       {/* Background Decorative Element */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-slate-50 -z-10 hidden lg:block"></div>
 
@@ -81,31 +99,20 @@ const Hero = () => {
             transition={{ duration: 0.8 }}
             className="w-full lg:w-1/2 relative"
           >
-            <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-[12px] border-white">
+            {/* Added h-[350px] or h-[400px] to control the height specifically */}
+            <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-[12px] border-white h-[350px] md:h-[650px]">
               <img
-                // src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800"
                 src={consultation}
                 alt="Professional Business Consultant"
-                className="w-full h-auto object-cover"
+                /* - h-full makes it fill the parent height 
+                   - object-top or object-center ensures the faces are visible 
+                */
+                className="w-full h-full object-cover object-top"
               />
             </div>
 
-            {/* Floating Info Box */}
-            {/* <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -bottom-6 -left-6 md:left-0 bg-white p-6 rounded-2xl shadow-2xl z-20 border border-slate-50 hidden md:block"
-            >
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white">
-                  <i className="fa-solid fa-phone-volume"></i>
-                </div>
-                <div>
-                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Get Free Consultation</p>
-                  <p className="text-lg font-bold text-slate-900 tracking-tight">+91 93639 64498</p>
-                </div>
-              </div>
-            </motion.div> */}
+            {/* Background Decoration to fill the empty space below the shorter image */}
+            <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-blue-50 rounded-full blur-3xl -z-10 opacity-60"></div>
           </motion.div>
 
         </div>

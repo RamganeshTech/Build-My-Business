@@ -131,6 +131,7 @@ const Footer = () => {
     { name: 'Disclaimer', path: '/disclaimer' },
     { name: 'App Privacy', path: '/app-privacy' },
     { name: 'Refund Policy', path: '/refund-cancellation-policy' },
+    { name: 'Hr Section', path: '/hr-section' },
   ];
 
   const socialLinks = [
