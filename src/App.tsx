@@ -27,6 +27,11 @@ import AppPrivacy from './components/AppPrivacy';
 import RefundPolicy from './components/RefundPolicy';
 import ScrollToTop from './components/ScrollToTop';
 import HRSection from './components/HrSection';
+import VerticalLivingFeature from './pages/VerticalLivingFeature';
+import VerticalLivingFormMain from './pages/VerticalLivingFormMain';
+import LMSFeaturePage from './pages/LMSFeaturePage';
+import LMSFormMain from './pages/LMSFormMain';
+import Products from './pages/Products';
 
 const App = () => {
   return (
@@ -40,6 +45,7 @@ const App = () => {
       <main className="flex-grow">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/products" element={<Products />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
           <Route path="/support" element={<Support />} />
@@ -52,6 +58,10 @@ const App = () => {
           <Route path="/app-privacy" element={<AppPrivacy />} />
           <Route path="/hr-section" element={<HRSection />} />
           <Route path="/refund-cancellation-policy" element={<RefundPolicy />} />
+          <Route path="/VL-feature" element={<VerticalLivingFeature />} />
+          <Route path="/VL-form" element={<VerticalLivingFormMain />} />
+          <Route path="/LMS-form" element={<LMSFormMain />} />
+          <Route path="/LMS" element={<LMSFeaturePage />} />
 
           {/* Optional: Add a 404 Redirect to Home */}
           <Route path="*" element={<NotFound />} />

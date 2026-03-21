@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const navLinks = [
     { name: 'HOME', path: '/' },
@@ -12,6 +13,14 @@ const Header = () => {
     { name: 'SERVICES', path: '/services' },
     { name: 'CAREER', path: '/career' },
     { name: 'CONTACT', path: '/contact' },
+    { name: 'PRODUCTS', path: '/products' },
+    // { name: 'LMS Form', path: '/VL-form' },
+    // { name: 'CRM Form', path: '/LMS-form' },
+  ];
+
+  const formLinks = [
+    { name: 'CRM FORM', path: '/VL-form', icon: 'fa-city' },
+    { name: 'LMS FORM', path: '/LMS-form', icon: 'fa-graduation-cap' },
   ];
 
   return (
@@ -41,6 +50,40 @@ const Header = () => {
                 {link.name}
               </Link>
             ))}
+
+
+            {/* DROPDOWN FOR FORMS */}
+            <div
+              className="relative group"
+              onMouseEnter={() => setIsDropdownOpen(true)}
+              onMouseLeave={() => setIsDropdownOpen(false)}
+            >
+              <button className="flex items-center gap-2 text-[13px] font-bold text-gray-600 group-hover:text-blue-600 transition-colors tracking-wider">
+                FORMS <i className={`fas fa-chevron-down text-[10px] transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`}></i>
+              </button>
+
+              <AnimatePresence>
+                {isDropdownOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    className="absolute top-full -left-25 w-48 bg-white border border-gray-100 shadow-xl rounded-xl py-4 mt-2 overflow-hidden"
+                  >
+                    {formLinks.map((form) => (
+                      <Link
+                        key={form.name}
+                        to={form.path}
+                        className="flex items-center gap-3 px-6 py-3 text-[12px] font-bold text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-all"
+                      >
+                        <i className={`fas ${form.icon} w-4`}></i>
+                        {form.name}
+                      </Link>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
 
 
           </nav>
@@ -78,6 +121,25 @@ const Header = () => {
                   {link.name}
                 </Link>
               ))}
+
+
+              <div className="pt-4 border-t border-gray-50">
+                <p className="text-[10px] font-black text-gray-300 tracking-[0.2em] mb-4">INQUIRY FORMS</p>
+                <div className="grid grid-cols-1 gap-4">
+                  {formLinks.map((form) => (
+                    <Link
+                      key={form.name}
+                      to={form.path}
+                      onClick={() => setIsOpen(false)}
+                      className="flex items-center gap-3 text-sm font-bold text-gray-700 hover:text-blue-600"
+                    >
+                      <i className={`fas ${form.icon} text-blue-500`}></i>
+                      {form.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
 
             </div>
           </motion.div>

@@ -122,6 +122,11 @@ const Footer = () => {
     { name: 'Services', path: '/services' },
     { name: 'Careers', path: '/career' },
     { name: 'Contact', path: '/contact' },
+    { name: 'Products', path: '/products' },
+    // { name: 'Vertical Living', path: '/VL-feature' },
+    // { name: 'Vertical form', path: '/VL-form' },
+    // { name: 'LMs Form', path: '/LMS-form' },
+    // { name: 'LMS', path: '/LMS' },
   ];
 
   const legalLinks = [
