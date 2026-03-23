@@ -67,7 +67,7 @@
 //                 <li key={link.name}>
 //                   <Link 
 //                     to={link.path} 
-//                     className="text-gray-400 hover:text-white hover:translate-x-1 transition-all inline-block text-sm"
+//                     className="text-gray-400 hover:text-slate-900 hover:translate-x-1 transition-all inline-block text-sm"
 //                   >
 //                     {link.name}
 //                   </Link>
@@ -97,8 +97,8 @@
 //         <div className="border-t border-slate-800 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center text-gray-500 text-xs gap-4">
 //           <p>© {currentYear} Build My Business. All Rights Reserved.</p>
 //           <div className="flex space-x-6">
-//             <Link to="/privacy" className="hover:text-white">Privacy Policy</Link>
-//             <Link to="/terms" className="hover:text-white">Terms of Service</Link>
+//             <Link to="/privacy" className="hover:text-slate-900">Privacy Policy</Link>
+//             <Link to="/terms" className="hover:text-slate-900">Terms of Service</Link>
 //           </div>
 //         </div>
 //       </div>
@@ -164,7 +164,8 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-[#0f172a] text-white pt-20 pb-10">
+    // <footer className="bg-[#0f172a] text-white pt-20 pb-10">
+    <footer className="bg-white text-slate-900 pt-20 pb-10 border-t border-slate-800/50">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
 
         {/* Main Footer Grid */}
@@ -180,7 +181,8 @@ const Footer = () => {
               />
             </Link>
             <p className="text-slate-400 text-sm leading-relaxed font-medium">
-              A premier consulting group specialized in registration, tax infrastructure, and digital scalability for modern enterprises.
+                Building powerful digital products for business operations, academic workflows, and interior project management. Designed to scale with your vision.
+
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social, index) => (
@@ -189,7 +191,7 @@ const Footer = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center hover:bg-blue-600 transition-all duration-300"
+                  className="w-10 h-10 bg-slate-800 rounded-xl text-white border-2 flex items-center justify-center hover:bg-blue-600 transition-all duration-300"
                 >
                   <i className={`fa-brands ${social.icon} text-sm`}></i>
                 </a>
@@ -205,7 +207,7 @@ const Footer = () => {
                 <li key={link.name}>
                   <Link
                     to={link.path}
-                    className="text-slate-400 hover:text-white hover:translate-x-1 transition-all inline-block text-sm font-medium"
+                    className="text-slate-700 hover:text-slate-900 hover:translate-x-1 transition-all inline-block text-sm font-medium"
                   >
                     {link.name}
                   </Link>
@@ -222,7 +224,7 @@ const Footer = () => {
                 <li key={link.name}>
                   <Link
                     to={link.path}
-                    className="text-slate-400 hover:text-white hover:translate-x-1 transition-all inline-block text-sm font-medium"
+                    className="text-slate-700 hover:text-slate-900 hover:translate-x-1 transition-all inline-block text-sm font-medium"
                   >
                     {link.name}
                   </Link>
@@ -237,8 +239,8 @@ const Footer = () => {
             <ul className="space-y-3">
               {workingHours.map((item) => (
                 <li key={item.day} className="flex justify-between text-xs py-1">
-                  <span className="font-bold text-slate-300 tracking-widest">{item.day}</span>
-                  <span className={`${item.hours === 'CLOSED' ? 'text-red-400' : 'text-slate-400'} font-medium`}>
+                  <span className="font-bold text-slate-600 tracking-widest">{item.day}</span>
+                  <span className={`${item.hours === 'CLOSED' ? 'text-red-400' : 'text-slate-700'} font-medium`}>
                     {item.hours}
                   </span>
                 </li>
