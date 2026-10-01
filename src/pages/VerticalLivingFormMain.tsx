@@ -1,4 +1,4 @@
-import VerticalLivingLeadform from '../components/LeadForm/VerticalLivingLeadform'
+import VerticalLivingLeadform from '../oldVersion/components/LeadForm/VerticalLivingLeadform'
 
 const VerticalLivingFormMain = () => {
     return (

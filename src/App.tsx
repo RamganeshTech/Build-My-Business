@@ -2,36 +2,30 @@
 import { Routes, Route } from 'react-router-dom';
 
 // Import Layout Components
-import Header from './components/Header';
-import Footer from './components/Footer';
+import Header from './oldVersion/components/Header';
+import Footer from './oldVersion/components/Footer';
 
-// Import Pages
-// import Home from './pages/Home';
-// import Support from './pages/Support';
-// import ContactUs from './pages/ContactUs';
-// import PrivacyPolicy from './pages/PrivacyPolicy';
-// import TermsOfUse from './pages/TermsOfUse';
-// import CookiePolicy from './pages/CookiePolicy';
-import Services from './components/Services';
-import Home from './components/Home';
-import About from './components/About';
-import Support from './components/Support';
-import ContactUs from './components/ContactUs';
-import PrivacyPolicy from './components/PrivacyPolicy';
-import TermsOfUse from './components/TermsOfUse';
-import CookiePolicy from './components/CookiePolicy';
-import NotFound from './components/NotFound';
-import Careers from './components/Careers';
-import Disclaimer from './components/Disclaimer';
-import AppPrivacy from './components/AppPrivacy';
-import RefundPolicy from './components/RefundPolicy';
-import ScrollToTop from './components/ScrollToTop';
-import HRSection from './components/HrSection';
-import VerticalLivingFeature from './pages/VerticalLivingFeature';
-import VerticalLivingFormMain from './pages/VerticalLivingFormMain';
-import LMSFeaturePage from './pages/LMSFeaturePage';
-import LMSFormMain from './pages/LMSFormMain';
-import Products from './pages/Products';
+// import Services from './oldVersion/components/Services';
+import Home from './pages/Home';
+// import About from './oldVersion/components/About';
+import { lazy } from 'react';
+const Support = lazy(()=> import( './oldVersion/components/Support'))
+const ContactUs = lazy(()=> import( './oldVersion/components/ContactUs'))
+const PrivacyPolicy = lazy(()=> import( './oldVersion/components/PrivacyPolicy'))
+const TermsOfUse = lazy(()=> import( './oldVersion/components/TermsOfUse'))
+const CookiePolicy = lazy(()=> import( './oldVersion/components/CookiePolicy'))
+const NotFound = lazy(()=> import( './oldVersion/components/NotFound'))
+const Careers = lazy(()=> import( './oldVersion/components/Careers'))
+const Disclaimer = lazy(()=> import( './oldVersion/components/Disclaimer'))
+const AppPrivacy = lazy(()=> import( './oldVersion/components/AppPrivacy'))
+const RefundPolicy = lazy(()=> import( './oldVersion/components/RefundPolicy'))
+const ScrollToTop = lazy(()=> import( './oldVersion/components/ScrollToTop'))
+const HRSection = lazy(()=> import( './oldVersion/components/HrSection'))
+// const VerticalLivingFeature = lazy(()=> import( './pages/VerticalLivingFeature'))
+// const VerticalLivingFormMain = lazy(()=> import( './pages/VerticalLivingFormMain'))
+// const LMSFeaturePage = lazy(()=> import( './pages/LMSFeaturePage'))
+// const LMSFormMain = lazy(()=> import( './pages/LMSFormMain'))
+// const Products = lazy(()=> import( './pages/Products'))
 
 const App = () => {
   return (
@@ -45,9 +39,9 @@ const App = () => {
       <main className="flex-grow">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
+          {/* <Route path="/products" element={<Products />} /> */}
+          {/* <Route path="/about" element={<About />} />
+          <Route path="/services" element={<Services />} /> */}
           <Route path="/support" element={<Support />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
@@ -58,10 +52,10 @@ const App = () => {
           <Route path="/app-privacy" element={<AppPrivacy />} />
           <Route path="/hr-section" element={<HRSection />} />
           <Route path="/refund-cancellation-policy" element={<RefundPolicy />} />
-          <Route path="/VL-feature" element={<VerticalLivingFeature />} />
+          {/* <Route path="/VL-feature" element={<VerticalLivingFeature />} />
           <Route path="/VL-form" element={<VerticalLivingFormMain />} />
           <Route path="/LMS-form" element={<LMSFormMain />} />
-          <Route path="/LMS" element={<LMSFeaturePage />} />
+          <Route path="/LMS" element={<LMSFeaturePage />} /> */}
 
           {/* Optional: Add a 404 Redirect to Home */}
           <Route path="*" element={<NotFound />} />

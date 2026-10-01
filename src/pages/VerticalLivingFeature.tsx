@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import VerticalLivingLeadform from '../components/LeadForm/VerticalLivingLeadform';
+import VerticalLivingLeadform from '../oldVersion/components/LeadForm/VerticalLivingLeadform';
 import CRMImage from "../assets/crmimg.png"; // Vertical Living Image
 
 const VerticalLivingFeature = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-// const CRMImage = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1600"
+    // const CRMImage = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1600"
     return (
         <section className="relative w-full py-12 bg-white font-['Poppins'] overflow-hidden">
             {/* Subtle Grid Background */}

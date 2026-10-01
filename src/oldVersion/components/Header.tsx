@@ -5,23 +5,35 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const navLinks = [
     { name: 'HOME', path: '/' },
-    { name: 'ABOUT US', path: '/about' },
-    { name: 'SERVICES', path: '/services' },
+    { name: 'PRICING', path: '#pricing' },
+    { name: 'SERVICES', path: '#services' },
     { name: 'CAREER', path: '/career' },
-    { name: 'CONTACT', path: '/contact' },
-    { name: 'PRODUCTS', path: '/products' },
+    { name: 'CONTACT', path: '#contact' },
+    { name: 'PRODUCTS', path: '#products' },
     // { name: 'LMS Form', path: '/VL-form' },
     // { name: 'CRM Form', path: '/LMS-form' },
   ];
 
-  const formLinks = [
-    { name: 'CRM FORM', path: '/VL-form', icon: 'fa-city' },
-    { name: 'LMS FORM', path: '/LMS-form', icon: 'fa-graduation-cap' },
-  ];
+  // const formLinks = [
+  //   { name: 'CRM FORM', path: '/VL-form', icon: 'fa-city' },
+  //   { name: 'LMS FORM', path: '/LMS-form', icon: 'fa-graduation-cap' },
+  // ];
+
+  const handleNavClick = (path: string) => {
+    if (path.startsWith('#')) {
+        const element = document.querySelector(path);
+
+        if (element) {
+            element.scrollIntoView({
+                behavior: 'smooth',
+            });
+        }
+    }
+};
 
   return (
     <header className="fixed top-0 left-0 w-full bg-white border-b border-gray-100 z-[100]">
@@ -45,6 +57,8 @@ const Header = () => {
               <Link
                 key={link.name}
                 to={link.path}
+                    onClick={() => handleNavClick(link.path)}
+
                 className="text-[13px] font-bold text-gray-600 hover:text-blue-600 transition-colors tracking-wider"
               >
                 {link.name}
@@ -53,7 +67,7 @@ const Header = () => {
 
 
             {/* DROPDOWN FOR FORMS */}
-            <div
+            {/* <div
               className="relative group"
               onMouseEnter={() => setIsDropdownOpen(true)}
               onMouseLeave={() => setIsDropdownOpen(false)}
@@ -83,7 +97,7 @@ const Header = () => {
                   </motion.div>
                 )}
               </AnimatePresence>
-            </div>
+            </div> */}
 
 
           </nav>
@@ -123,7 +137,7 @@ const Header = () => {
               ))}
 
 
-              <div className="pt-4 border-t border-gray-50">
+              {/* <div className="pt-4 border-t border-gray-50">
                 <p className="text-[10px] font-black text-gray-300 tracking-[0.2em] mb-4">INQUIRY FORMS</p>
                 <div className="grid grid-cols-1 gap-4">
                   {formLinks.map((form) => (
@@ -138,7 +152,7 @@ const Header = () => {
                     </Link>
                   ))}
                 </div>
-              </div>
+              </div> */}
 
 
             </div>

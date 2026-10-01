@@ -1,4 +1,4 @@
-import LMSLeadForm from '../components/LeadForm/LMSLeadform'
+import LMSLeadForm from '../oldVersion/components/LeadForm/LMSLeadform'
 
 const LMSFormMain = () => {
     return (
