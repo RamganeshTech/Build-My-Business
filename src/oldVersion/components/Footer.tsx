@@ -189,7 +189,7 @@
 import { useCallback, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { MessageCircle } from 'lucide-react';
-import logo from '../../../public/bmbLogo.webp'; // keep your existing path
+// import logo from '../../../public/bmbLogo.webp'; // keep your existing path
 import { CATALOG, type CatalogProduct } from '../../data/productCatalog';
 import { ctaFor } from '../../components/products/Products';
 import { SideModal } from '../../components/ui/SideModal';
@@ -289,7 +289,7 @@ const Footer = () => {
           {/* Brand */}
           <div>
             <Link to="/" className="inline-flex items-center gap-3">
-              <img src={logo} alt="Build My Business logo" className="h-14 w-auto object-contain" />
+              <img src={"/bmbLogo.webp"} alt="Build My Business logo" className="h-14 w-auto object-contain" />
               <b className="text-xl font-bold leading-[1.05] text-white">
                 Build My<br />
                 <span className="text-orange-500">Business</span>

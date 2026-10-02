@@ -112,9 +112,9 @@ export default function Products() {
 
         <p className="sr-only" aria-live="polite">{filtered.length} products shown</p>
 
-        <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <ul className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
           {filtered.map((product) => (
-            <li key={product.id}>
+            <li key={product.id} className="min-w-0">
               <ProductCard product={product} onSelect={handleSelect} />
             </li>
           ))}

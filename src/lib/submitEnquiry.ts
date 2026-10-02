@@ -14,7 +14,7 @@ export async function submitEnquiry(enquiry: Enquiry): Promise<void> {
   if (!ENDPOINT) {
     // Local development: just log it so the whole UI flow can be tested.
     if (import.meta.env.DEV) {
-      console.info('[BMB enquiry]', enquiry);
+    //   console.info('[BMB enquiry]', enquiry);
       return;
     }
     // Production without an endpoint: fail honestly instead of pretending it was sent.

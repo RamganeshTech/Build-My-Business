@@ -70,10 +70,10 @@ const LMSLeadForm = ({ onClose, isPage = false }: any) => {
 
                 // Show success state
                 setIsDone(true);
-                console.log("School inquiry saved to Google Sheets");
+                // console.log("School inquiry saved to Google Sheets");
 
             } catch (error: any) {
-                console.error("LMS Submission Error:", error);
+                // console.error("LMS Submission Error:", error);
                 // Set a general error if the network call fails
                 setErrors({ submit: "Connection failed. Please check your internet." });
             } finally {

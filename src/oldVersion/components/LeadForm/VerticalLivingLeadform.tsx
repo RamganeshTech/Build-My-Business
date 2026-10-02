@@ -171,10 +171,10 @@ const VerticalLivingLeadform = ({ onClose, isPage = false }: any) => {
                 // Since 'no-cors' doesn't return a readable body, 
                 // we assume success if the fetch doesn't throw an error.
                 setIsSubmitted(true);
-                console.log("Response saved successfully to Google Sheets");
+                // console.log("Response saved successfully to Google Sheets");
 
             } catch (error: any) {
-                console.error("Submission Error:", error);
+                // console.error("Submission Error:", error);
                 setErrors({ submit: "Failed to connect to server. Please try again." });
             } finally {
                 setIsSubmitting(false);

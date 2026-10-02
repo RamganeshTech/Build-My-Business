@@ -372,7 +372,7 @@ const Header = () => {
         <div className="relative mx-auto flex h-20 w-full max-w-[1220px] items-center gap-7 px-4 sm:px-6">
           {/* Logo image + text */}
           <Link to="/" aria-label="Build My Business home" className={`flex shrink-0 items-center gap-2.5 rounded-lg ${focusRing}`}>
-            <img src="/bmbLogo.webp" alt="" className="h-11 w-auto object-contain" />
+            <img src="/bmbLogo.webp" alt="Build My Business logo" className="h-11 w-auto object-contain" />
             <b className="text-[17px] font-bold leading-none tracking-tight text-[#0a1433]">
               Build My<br />
               <span className="text-[#f97506]">Business</span>
