@@ -354,17 +354,30 @@ const Hero = () => {
                                                 }`}
                                         >
                                             <div
-                                                className={`relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br ${p.accentClass} p-2 shadow-sm transition-all duration-200 sm:h-14 sm:w-14 ${isSelected
-                                                    ? 'scale-105 shadow-lg ring-2 ring-orange-300 ring-offset-2'
-                                                    : 'group-hover:-translate-y-1 group-hover:shadow-md'
+                                                className={`relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl
+                                                    ${catalogProduct.logo
+                                                        ? 'bg-white'
+                                                        : `bg-gradient-to-br ${p.accentClass}`
+                                                    } 
+                                                      p-2 shadow-sm transition-all duration-200 sm:h-14 sm:w-14 ${isSelected
+                                                        ? 'scale-105 shadow-lg ring-2 ring-orange-300 ring-offset-2'
+                                                        : 'group-hover:-translate-y-1 group-hover:shadow-md'
                                                     }`}
                                             >
-                                                <Icon
-                                                    size={28}
-                                                    className="text-white"
-                                                    strokeWidth={1.8}
-                                                    aria-hidden="true"
-                                                />
+                                                {catalogProduct.logo ? (
+                                                    <img
+                                                        src={catalogProduct.logo}
+                                                        alt=""
+                                                        className="h-full w-full object-contain"
+                                                    />
+                                                ) : (
+                                                    <Icon
+                                                        size={28}
+                                                        className="text-white"
+                                                        strokeWidth={1.8}
+                                                        aria-hidden="true"
+                                                    />
+                                                )}
                                             </div>
 
                                             <span className="mt-2 line-clamp-1 w-full text-[11px] font-semibold text-[#0a1433] sm:text-xs">

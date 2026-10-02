@@ -1,7 +1,7 @@
 import { Check, Sparkles } from 'lucide-react';
 import type { ReactNode } from 'react';
-import { CATALOG } from '../../data/productCatalog';
-import type { ServiceItem } from './Service';
+import {  type CatalogProduct } from '../../data/productCatalog';
+// import { SERVICE_IDS, type ServiceItem } from './Service';
 
 
 function Block({
@@ -22,9 +22,8 @@ function Block({
 
                 {count !== undefined && (
                     <span
-                        className={`rounded-full px-2 py-0.5 text-xs font-semibold ${
-                            badgeClass ?? 'bg-slate-100 text-slate-700'
-                        }`}
+                        className={`rounded-full px-2 py-0.5 text-xs font-semibold ${badgeClass ?? 'bg-slate-100 text-slate-700'
+                            }`}
                     >
                         {count}
                     </span>
@@ -36,68 +35,66 @@ function Block({
     );
 }
 
-const SERVICE_IDS = [
-    'digital-marketing',
-    'content-creation',
-    'custom-software',
-    'ai-automation',
-    'cloud-it',
-] as const;
 
 export default function ServiceDetails({
     service,
 }: {
-    service: ServiceItem;
+    service: CatalogProduct;
 }) {
-    const serviceDetails = CATALOG.find(
-        (product) =>
-            SERVICE_IDS.includes(product.id as (typeof SERVICE_IDS)[number]) &&
-            product.id === service.id,
-    );
+    // const serviceDetails = CATALOG.find(
+    //     (product) =>
+    //         SERVICE_IDS.includes(product.id as (typeof SERVICE_IDS)[number]) &&
+    //         product.id === service.id,
+    // );
 
-    if (!serviceDetails) {
-        return null;
-    }
+    // if (!serviceDetails) {
+    //     return null;
+    // }
 
-    const {
-        tagline,
-        forWho,
-        flow,
-        modules,
-        advanced,
-    } = serviceDetails;
+    const Icon = service.icon;
+
+    // const {
+    //     tagline,
+    //     forWho,
+    //     flow,
+    //     modules,
+    //     advanced,
+    // } = serviceDetails;
 
     return (
         <div className="space-y-8">
             {/* Intro */}
             <div className="rounded-2xl bg-gradient-to-br from-slate-900 to-slate-700 p-5 text-white">
                 <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/15">
-                    {service.icon}
+                    {/* {service.icon} */}
+
+                    {service.logo ?
+                        (<img src={service.logo} alt="" className="h-full w-full object-contain p-1.5" />) : (
+                            <Icon size={28} aria-hidden="true" />)}
                 </div>
 
                 <p className="mt-4 text-base leading-relaxed text-white">
-                    {tagline}
+                    {service.tagline}
                 </p>
             </div>
 
             {/* Built for */}
             <Block title="Built for">
                 <p className="text-base font-semibold text-slate-800">
-                    {forWho}
+                    {service.forWho}
                 </p>
             </Block>
 
             {/* How it works */}
             <Block title="How it works">
                 <ol>
-                    {flow.map((step, i) => (
+                    {service.flow.map((step, i) => (
                         <li
                             key={step}
-                            className={`relative flex items-center gap-3 py-2 ${
-                                i < flow.length - 1
-                                    ? 'after:absolute after:left-3.5 after:top-9 after:h-4 after:w-0.5 after:-translate-x-1/2 after:bg-slate-200'
-                                    : ''
-                            }`}
+                            className={`relative flex items-center gap-3 py-2 ${i < service.flow.length - 1
+                                ? 'after:absolute after:left-3.5 after:top-9 after:h-4 after:w-0.5 after:-translate-x-1/2 after:bg-slate-200'
+                                : ''
+                                }`}
                         >
                             <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full border-2 border-orange-500 bg-white text-xs font-bold text-orange-500">
                                 {i + 1}
@@ -112,9 +109,9 @@ export default function ServiceDetails({
             </Block>
 
             {/* Key modules */}
-            <Block title="Key modules" count={modules.length}>
+            <Block title="Key modules" count={service.modules.length}>
                 <ul className="flex flex-wrap gap-2">
-                    {modules.map((module) => (
+                    {service.modules.map((module) => (
                         <li
                             key={module}
                             className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 px-3 py-1.5 text-sm font-medium text-slate-700"
@@ -132,14 +129,14 @@ export default function ServiceDetails({
             </Block>
 
             {/* Advanced modules */}
-            {advanced.length > 0 && (
+            {service.advanced.length > 0 && (
                 <Block
                     title="Advanced modules"
-                    count={advanced.length}
+                    count={service.advanced.length}
                     badgeClass="bg-orange-50 text-orange-700"
                 >
                     <ul className="flex flex-wrap gap-2">
-                        {advanced.map((module) => (
+                        {service.advanced.map((module) => (
                             <li
                                 key={module}
                                 className="inline-flex items-center gap-1.5 rounded-lg bg-orange-50 px-3 py-1.5 text-sm font-medium text-orange-800"

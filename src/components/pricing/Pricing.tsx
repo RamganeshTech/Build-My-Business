@@ -1,49 +1,32 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import {
     Check,
 } from 'lucide-react';
 import { CATALOG } from '../../data/productCatalog';
 
-export type CatalogProduct = {
-    id: string;
-    name: string;
-    kind: 'app' | 'service' | 'venture';
-    status: 'live' | 'soon' | 'beta';
-    cat: string;
-    icon: React.ElementType;
-    tagline: string;
-    forWho: string;
-    flow: string[];
-    modules: string[];
-    advanced: string[];
-    logo?: string;
-    price?: string;
-    priceNote?: string;
-};
 
 
-const categoryLabels: Record<string, string> = {
-    edu: 'Education',
-    build: 'Interiors & Construction',
-    ops: 'Operations & Supply Chain',
-    sales: 'Sales & Marketing',
-    food: 'Food & Hospitality',
-    trade: 'Trade & Exports',
-    grow: 'Growth Services',
-    tech: 'Technology Services',
-};
+// const categoryLabels: Record<string, string> = {
+//     edu: 'Education',
+//     build: 'Interiors & Construction',
+//     ops: 'Operations & Supply Chain',
+//     sales: 'Sales & Marketing',
+//     food: 'Food & Hospitality',
+//     trade: 'Trade & Exports',
+//     grow: 'Growth Services',
+//     tech: 'Technology Services',
+// };
 
-const categoryGradients: Record<string, string> = {
-    edu: 'from-[#ff2a3d] to-[#d90a1e]',
-    build: 'from-[#ff9a3d] to-[#f97506]',
-    ops: 'from-[#38bdf8] to-[#1f7fc9]',
-    sales: 'from-[#ff4f8b] to-[#e11d74]',
-    food: 'from-[#34d399] to-[#059669]',
-    trade: 'from-[#2dd4bf] to-[#0d9488]',
-    grow: 'from-[#fb7185] to-[#f97506]',
-    tech: 'from-[#60a5fa] to-[#2563eb]',
-};
+// const categoryGradients: Record<string, string> = {
+//     edu: 'from-[#ff2a3d] to-[#d90a1e]',
+//     build: 'from-[#ff9a3d] to-[#f97506]',
+//     ops: 'from-[#38bdf8] to-[#1f7fc9]',
+//     sales: 'from-[#ff4f8b] to-[#e11d74]',
+//     food: 'from-[#34d399] to-[#059669]',
+//     trade: 'from-[#2dd4bf] to-[#0d9488]',
+//     grow: 'from-[#fb7185] to-[#f97506]',
+//     tech: 'from-[#60a5fa] to-[#2563eb]',
+// };
 
 const pricingPrinciples = [
     'Pay per product, add more any time',
@@ -108,7 +91,7 @@ const Pricing = () => {
                     {/* RIGHT: 2-Column Product Pricing Table */}
                     <div className="overflow-hidden rounded-3xl border border-[#e4e9f3] bg-white shadow-sm">
                         <div className="grid grid-cols-1 sm:grid-cols-2">
-                            {CATALOG.map((product, idx) => {
+                            {/* {CATALOG.map((product, idx) => {
                                 const IconComponent = product.icon;
                                 const isOdd = idx % 2 !== 0;
 
@@ -121,9 +104,7 @@ const Pricing = () => {
                                             !isOdd ? 'sm:border-r sm:border-[#eef2f8]' : ''
                                         }`}
                                     >
-                                        {/* Left info: Icon / Logo + Name + Category */}
                                         <div className="flex items-center gap-3.5 pr-2">
-                                            {/* Logo / Icon Tile */}
                                             <div
                                                 className={`flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br p-1.5 shadow-sm ${
                                                     categoryGradients[product.cat] || 'from-sky-500 to-blue-600'
@@ -140,7 +121,6 @@ const Pricing = () => {
                                                 )}
                                             </div>
 
-                                            {/* Text block */}
                                             <div className="text-left">
                                                 <h4 className="text-[14.5px] font-bold text-[#0a1433]">
                                                     {product.name}
@@ -151,7 +131,6 @@ const Pricing = () => {
                                             </div>
                                         </div>
 
-                                        {/* Right: Pricing or CTA */}
                                         <div className="shrink-0 text-right">
                                             {product.price ? (
                                                 <div>
@@ -175,7 +154,86 @@ const Pricing = () => {
                                         </div>
                                     </motion.a>
                                 );
+                            })} */}
+
+
+                            {CATALOG.map((product, idx) => {
+                                const Icon = product.icon;
+                                const isOdd = idx % 2 !== 0;
+
+                                return (
+                                    <motion.a
+                                        key={product.id}
+                                        href={`#${product.id}`}
+                                        whileHover={{ backgroundColor: '#f8fafc' }}
+                                        className={`flex items-center justify-between border-b border-[#eef2f8] p-4 transition-colors duration-150 sm:p-5 ${!isOdd ? 'sm:border-r sm:border-[#eef2f8]' : ''
+                                            }`}
+                                    >
+                                        {/* Left info: Icon / Logo + Name + Category */}
+                                        <div className="flex items-center gap-3.5 pr-2">
+                                            {/* Logo / Icon Tile */}
+                                            {product.logo ? (
+                                                <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-slate-200 bg-white p-1.5 shadow-sm">
+                                                    <img
+                                                        src={product.logo}
+                                                        alt=""
+                                                        className="h-full w-full object-contain"
+                                                    />
+                                                </div>
+                                            ) : (
+                                                <div
+                                                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl p-1.5 text-white shadow-sm"
+                                                    style={{
+                                                        backgroundImage: `linear-gradient(135deg, ${product.accent.from}, ${product.accent.to})`,
+                                                    }}
+                                                >
+                                                    <Icon
+                                                        size={20}
+                                                        aria-hidden="true"
+                                                    />
+                                                </div>
+                                            )}
+
+                                            {/* Text block */}
+                                            <div className="text-left">
+                                                <h4 className="text-[14.5px] font-bold text-[#0a1433]">
+                                                    {product.name}
+                                                </h4>
+
+                                                <p className="text-[12px] font-medium text-[#67728f]">
+                                                    {product.category}
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        {/* Right: Pricing or CTA */}
+                                        <div className="shrink-0 text-right">
+                                            {product.price ? (
+                                                <div>
+                                                    <span className="block text-[11px] font-medium text-[#67728f]">
+                                                        From
+                                                    </span>
+
+                                                    <span className="block text-[15px] font-bold text-[#0a1433]">
+                                                        {product.price}
+                                                    </span>
+
+                                                    {product.priceNote && (
+                                                        <span className="block text-[11px] text-[#67728f]">
+                                                            {product.priceNote}
+                                                        </span>
+                                                    )}
+                                                </div>
+                                            ) : (
+                                                <span className="text-[12.5px] font-bold text-sky-700 transition hover:text-sky-800">
+                                                    Ask for pricing →
+                                                </span>
+                                            )}
+                                        </div>
+                                    </motion.a>
+                                );
                             })}
+                            
                         </div>
                     </div>
                 </div>

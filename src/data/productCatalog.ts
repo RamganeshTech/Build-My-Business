@@ -1,12 +1,38 @@
 // src/data/productCatalog.ts
 import {
-  Boxes, Cloud, Code, Gauge, GraduationCap, HardHat, Home, Megaphone, Ship, Sparkles,
-  Truck, UtensilsCrossed, Users, Video, type LucideIcon,
+    Boxes, Cloud, Code, Gauge, GraduationCap, HardHat, Home, Megaphone, Ship, Sparkles,
+    Truck, UtensilsCrossed, Users, Video, type LucideIcon,
 } from 'lucide-react';
-import heroLogo from '../assets/lmsimg.png';
-
+import verticalLiving from '../assets/product_logos/VL-logo.webp'
+import dailygrades from '../assets/product_logos/daily-grades-app-icon-generic-square.webp'
+import civilmindPro from '../assets/product_logos/civilmindpro_logo.svg'
+import warehouse from '../assets/product_logos/warehouse.svg'
+import contentcreation from '../assets/product_logos/contentcreation.svg'
+import ai from '../assets/product_logos/ai.svg'
+import exports from '../assets/product_logos/exports.svg'
+import bmbkitchen from '../assets/product_logos/bmbkitchen.svg'
+import bmbleads from '../assets/product_logos/bmbleads.svg'
+import cloud from '../assets/product_logos/cloud.svg'
+import customsoftware from '../assets/product_logos/customsoftware.svg'
+import digitalMarketing from '../assets/product_logos/digitalMarketing.svg'
+import logistics from '../assets/product_logos/logistics.svg'
+import presencescore from '../assets/product_logos/presencescore.svg'
 // TODO: replace the shared logo with a per-product logo (set `logo` on each item below).
-const SHARED_LOGO: string = heroLogo;
+// const SHARED_LOGO: string = heroLogo;
+const dailyGradesLogo: string = dailygrades;
+const verticalLivingLogo: string = verticalLiving;
+const civilmindProLogo: string = civilmindPro;
+const warehouseLogo: string = warehouse;
+const contentcreationLogo: string = contentcreation;
+const aiLogo: string = ai;
+const exportsLogo: string = exports;
+const bmbkitchenLogo: string = bmbkitchen;
+const bmbleadsLogo: string = bmbleads;
+const cloudLogo: string = cloud;
+const customsoftwareLogo: string = customsoftware;
+const digitalMarketingLogo: string = digitalMarketing;
+const logisticsLogo: string = logistics;
+const presencescoreLogo: string = presencescore;
 
 export type Kind = 'app' | 'service' | 'venture';
 export type Status = 'live' | 'beta' | 'soon';
@@ -14,12 +40,12 @@ export type CategoryId = 'edu' | 'build' | 'sales' | 'ops' | 'food' | 'trade' | 
 
 /** Tailwind default-palette classes, written in full so Tailwind can see them. */
 export interface Accent {
-  from: string;
-  to: string;
-  text: string;
-  chip: string;
-  step: string;
-  badge: string;
+    from: string;
+    to: string;
+    text: string;
+    chip: string;
+    step: string;
+    badge: string;
 }
 
 const RED: Accent = { from: '#f43f5e', to: '#dc2626', text: 'text-red-600', chip: 'bg-red-50 text-red-900 ring-1 ring-inset ring-red-200', step: 'border-red-500 text-red-600', badge: 'bg-red-600 text-white' };
@@ -32,56 +58,56 @@ const ROSE: Accent = { from: '#fb7185', to: '#e11d48', text: 'text-rose-600', ch
 const INDIGO: Accent = { from: '#818cf8', to: '#4338ca', text: 'text-indigo-700', chip: 'bg-indigo-50 text-indigo-900 ring-1 ring-inset ring-indigo-200', step: 'border-indigo-500 text-indigo-700', badge: 'bg-indigo-600 text-white' };
 
 export const CATEGORIES: Record<CategoryId, { name: string; accent: Accent }> = {
-  edu: { name: 'Education', accent: RED },
-  build: { name: 'Interiors & Construction', accent: ORANGE },
-  sales: { name: 'Sales & Marketing', accent: PINK },
-  ops: { name: 'Operations & Supply Chain', accent: SKY },
-  food: { name: 'Food & Hospitality', accent: EMERALD },
-  trade: { name: 'Trade & Exports', accent: TEAL },
-  grow: { name: 'Growth Services', accent: ROSE },
-  tech: { name: 'Technology Services', accent: INDIGO },
+    edu: { name: 'Education', accent: RED },
+    build: { name: 'Interiors & Construction', accent: ORANGE },
+    sales: { name: 'Sales & Marketing', accent: PINK },
+    ops: { name: 'Operations & Supply Chain', accent: SKY },
+    food: { name: 'Food & Hospitality', accent: EMERALD },
+    trade: { name: 'Trade & Exports', accent: TEAL },
+    grow: { name: 'Growth Services', accent: ROSE },
+    tech: { name: 'Technology Services', accent: INDIGO },
 };
 
 export const KIND_TABS: { id: Kind | 'all'; label: string }[] = [
-  { id: 'all', label: 'All' },
-  { id: 'app', label: 'Apps' },
-  { id: 'service', label: 'Services' },
-  { id: 'venture', label: 'Ventures' },
+    { id: 'all', label: 'All' },
+    { id: 'app', label: 'Apps' },
+    { id: 'service', label: 'Services' },
+    { id: 'venture', label: 'Ventures' },
 ];
 
 export interface CatalogProduct {
-  id: string;
-  name: string;
-  kind: Kind;
-  status?: Status;
-  cat: CategoryId;
-  category: string;
-  tagline: string;
-  forWho: string;
-  icon: LucideIcon;
-  accent: Accent;
-  logo?: string;
-  price?: string;
-  priceNote?: string;
-  flow: string[];
-  modules: string[];
-  advanced: string[];
+    id: string;
+    name: string;
+    kind: Kind;
+    status?: Status;
+    cat: CategoryId;
+    category: string;
+    tagline: string;
+    forWho: string;
+    icon: LucideIcon;
+    accent: Accent;
+    logo?: string;
+    price?: string;
+    priceNote?: string;
+    flow: string[];
+    modules: string[];
+    advanced: string[];
 }
 
 export function badgeFor(p: CatalogProduct): { label: string; className: string } {
-  if (p.kind === 'service') return { label: 'Service', className: 'bg-violet-100 text-violet-700' };
-  if (p.kind === 'venture') return { label: 'Venture', className: 'bg-teal-100 text-teal-700' };
-  if (p.status === 'soon') return { label: 'Early access', className: 'bg-amber-100 text-amber-700' };
-  if (p.status === 'beta') return { label: 'Beta', className: 'bg-sky-100 text-sky-700' };
-  return { label: 'Live', className: 'bg-green-100 text-green-700' };
+    if (p.kind === 'service') return { label: 'Service', className: 'bg-violet-100 text-violet-700' };
+    if (p.kind === 'venture') return { label: 'Venture', className: 'bg-teal-100 text-teal-700' };
+    if (p.status === 'soon') return { label: 'Early access', className: 'bg-amber-100 text-amber-700' };
+    if (p.status === 'beta') return { label: 'Beta', className: 'bg-sky-100 text-sky-700' };
+    return { label: 'Live', className: 'bg-green-100 text-green-700' };
 }
 
-type Input = Omit<CatalogProduct, 'category' | 'accent' | 'logo'>;
+type Input = Omit<CatalogProduct, 'category' | 'accent'>;
 const item = (p: Input): CatalogProduct => ({
-  ...p,
-  category: CATEGORIES[p.cat].name,
-  accent: CATEGORIES[p.cat].accent,
-  logo: SHARED_LOGO, // TODO: per-product logo
+    ...p,
+    category: CATEGORIES[p.cat].name,
+    accent: CATEGORIES[p.cat].accent,
+    //   logo: SHARED_LOGO, // TODO: per-product logo
 });
 
 // export const CATALOG: CatalogProduct[] = [
@@ -209,6 +235,7 @@ export const CATALOG: CatalogProduct[] = [
         status: 'live',
         cat: 'edu',
         icon: GraduationCap,
+        logo: dailyGradesLogo,
         tagline: 'Classes, assignments and materials for teachers, students and parents in one school app.',
         forWho: 'Schools, coaching centres and study circles',
         flow: ['Classes', 'Assignments', 'Materials', 'Progress', 'Parent updates'],
@@ -222,6 +249,7 @@ export const CATALOG: CatalogProduct[] = [
         status: 'live',
         cat: 'build',
         icon: Home,
+        logo: verticalLivingLogo,
         tagline: 'Run an interior or construction firm from first enquiry to final payment.',
         forWho: 'Interior designers, modular kitchen firms and contractors',
         flow: ['Leads', 'Quotation', 'Projects', 'Site execution', 'Payments'],
@@ -235,6 +263,8 @@ export const CATALOG: CatalogProduct[] = [
         status: 'live',
         cat: 'build',
         icon: HardHat,
+        logo: civilmindProLogo,
+
         tagline: 'Civil project management and site execution, built for Indian construction.',
         forWho: 'Builders, civil contractors and project managers',
         flow: ['Plan', 'Schedule', 'SiteOps', 'Materials', 'Billing'],
@@ -248,6 +278,7 @@ export const CATALOG: CatalogProduct[] = [
         status: 'live',
         cat: 'ops',
         icon: Boxes,
+        logo: warehouseLogo,
         tagline: 'Inventory, warehouse and material operations with real-time stock visibility.',
         forWho: 'Warehouses, distributors, 3PLs and material stores',
         flow: ['Inward', 'Put-away', 'Stock', 'Pick & pack', 'Dispatch'],
@@ -261,6 +292,7 @@ export const CATALOG: CatalogProduct[] = [
         status: 'live',
         cat: 'sales',
         icon: Users,
+        logo: bmbleadsLogo,
         tagline: 'Capture every enquiry, assign it fast and follow up until it converts.',
         forWho: 'Sales teams and any business that runs on enquiries',
         flow: ['Capture', 'Assign', 'Follow up', 'Convert'],
@@ -274,6 +306,7 @@ export const CATALOG: CatalogProduct[] = [
         status: 'live',
         cat: 'sales',
         icon: Gauge,
+        logo: presencescoreLogo,
         tagline: 'See how strong your business looks online, and exactly what to fix first.',
         forWho: 'Local businesses, clinics, schools and retailers',
         flow: ['Scan', 'Score', 'Fix list', 'Track'],
@@ -287,6 +320,8 @@ export const CATALOG: CatalogProduct[] = [
         status: 'live',
         cat: 'food',
         icon: UtensilsCrossed,
+        logo: bmbkitchenLogo,
+
         tagline: 'Restaurant billing, kitchen orders and stock in one point-of-sale system.',
         forWho: 'Restaurants, cafés, cloud kitchens and QSRs',
         flow: ['Order', 'KOT', 'Billing', 'Inventory', 'Reports'],
@@ -300,6 +335,8 @@ export const CATALOG: CatalogProduct[] = [
         status: 'soon',
         cat: 'ops',
         icon: Truck,
+        logo: logisticsLogo,
+
         tagline: 'Bookings, dispatch and delivery tracking for goods on the move.',
         forWho: 'Transporters, distributors and delivery operators',
         flow: ['Booking', 'Dispatch', 'Tracking', 'Proof of delivery'],
@@ -313,6 +350,8 @@ export const CATALOG: CatalogProduct[] = [
         status: 'live',
         cat: 'trade',
         icon: Ship,
+        logo: exportsLogo,
+
         tagline: 'Agricultural exports from India to Dubai and beyond, sourced and shipped by BMB.',
         forWho: 'Importers, wholesalers and retail buyers',
         flow: ['Enquiry', 'Sourcing', 'Quality check', 'Shipping', 'Delivery'],
@@ -326,6 +365,8 @@ export const CATALOG: CatalogProduct[] = [
         status: 'live',
         cat: 'grow',
         icon: Megaphone,
+        logo: digitalMarketingLogo,
+
         tagline: 'Meta ads, Google ads and SEO packages priced for Indian businesses.',
         forWho: 'Businesses that want more leads, walk-ins or online sales',
         flow: ['Audit', 'Set-up', 'Campaigns', 'Optimise', 'Report'],
@@ -341,6 +382,8 @@ export const CATALOG: CatalogProduct[] = [
         status: 'live',
         cat: 'grow',
         icon: Video,
+        logo: contentcreationLogo,
+
         tagline: 'Ad shoots, reels, product videos and posters that make your ads work.',
         forWho: 'Brands, real estate, interiors, restaurants and schools',
         flow: ['Brief', 'Script', 'Shoot', 'Edit', 'Deliver'],
@@ -356,6 +399,8 @@ export const CATALOG: CatalogProduct[] = [
         status: 'live',
         cat: 'tech',
         icon: Code,
+        logo: customsoftwareLogo,
+
         tagline: 'Custom software, SaaS products, mobile apps and websites built by our in-house team.',
         forWho: 'Businesses with workflows no off-the-shelf tool fits',
         flow: ['Discover', 'Design', 'Build', 'Launch', 'Support'],
@@ -369,6 +414,8 @@ export const CATALOG: CatalogProduct[] = [
         status: 'live',
         cat: 'tech',
         icon: Sparkles,
+        logo: aiLogo,
+
         tagline: 'AI chatbots, workflow automation and dashboards that cut manual work.',
         forWho: 'Teams buried in repetitive work and spreadsheets',
         flow: ['Map process', 'Automate', 'Measure'],
@@ -382,6 +429,8 @@ export const CATALOG: CatalogProduct[] = [
         status: 'live',
         cat: 'tech',
         icon: Cloud,
+        logo: cloudLogo,
+
         tagline: 'IT infrastructure, cloud and DevOps, security, and ongoing managed support.',
         forWho: 'Schools, offices and SMEs',
         flow: ['Assess', 'Set up', 'Secure', 'Maintain'],
@@ -392,9 +441,9 @@ export const CATALOG: CatalogProduct[] = [
 
 
 export function matchesQuery(p: CatalogProduct, q: string): boolean {
-  if (!q) return true;
-  return [p.name, p.tagline, p.forWho, p.category, ...p.flow, ...p.modules, ...p.advanced]
-    .join(' ')
-    .toLowerCase()
-    .includes(q);
+    if (!q) return true;
+    return [p.name, p.tagline, p.forWho, p.category, ...p.flow, ...p.modules, ...p.advanced]
+        .join(' ')
+        .toLowerCase()
+        .includes(q);
 }

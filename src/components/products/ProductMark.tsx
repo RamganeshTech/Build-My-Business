@@ -20,16 +20,16 @@ interface ProductMarkProps {
 }
 
 export default function ProductMark({ product, size = 'md', onGradient = false , fromIndustries= false}: ProductMarkProps) {
-  const { icon: Icon, accent } = product;
-//   const { logo , icon: Icon, accent } = product;
+  // const { icon: Icon, accent } = product;
+  const { logo , icon: Icon, accent } = product;
 
-//   if (logo) {
-//     return (
-//       <span className={`grid shrink-0 place-items-center border border-slate-200 bg-white p-1.5 ${BOX[size]}`}>
-//         <img src={logo} alt="" className="h-full w-full object-contain" />
-//       </span>
-//     );
-//   }
+  if (logo) {
+    return (
+      <span className={`grid shrink-0 place-items-center border border-slate-200 bg-white p-1.5 ${BOX[size]}`}>
+        <img src={logo} alt="" className="h-full w-full object-contain" />
+      </span>
+    );
+  }
 
   return (
     <span

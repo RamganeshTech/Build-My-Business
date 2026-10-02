@@ -4,6 +4,7 @@ import { SideModal } from '../ui/SideModal';
 import { waLink } from '../../data/contact';
 import { MessageCircle } from 'lucide-react';
 import ServiceDetails from './ServiceDetails';
+import { CATALOG, type CatalogProduct } from '../../data/productCatalog';
 
 // type ServiceItem = {
 export type ServiceItem = {
@@ -15,148 +16,164 @@ export type ServiceItem = {
     icon: React.ReactNode;
 };
 
-const services: ServiceItem[] = [
-    {
-        id: 'digital-marketing',
-        name: 'BMB Digital Marketing',
-        description: 'Meta ads, Google ads and SEO packages priced for Indian businesses.',
-        points: [
-            'Meta ads',
-            'Google Search ads',
-            'Performance Max',
-            'YouTube ads',
-            'Local SEO',
-        ],
-        gradientClass: 'from-[#ff8a4c] to-[#e11d48]',
-        icon: (
-            <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-5 w-5"
-                aria-hidden="true"
-            >
-                <path d="M3 11v2a1 1 0 0 0 1 1h3l7 5V5L7 10H4a1 1 0 0 0-1 1z" />
-                <path d="M18 8a5 5 0 0 1 0 8" />
-            </svg>
-        ),
-    },
-    {
-        id: 'content-creation',
-        name: 'BMB Content Creation',
-        description: 'Ad shoots, reels, product videos and posters that make your ads work.',
-        points: [
-            'Ad film shoots',
-            'Reels & shorts',
-            'Product videos',
-            'Testimonial videos',
-            'Posters & creatives',
-        ],
-        gradientClass: 'from-[#f0abfc] to-[#a21caf]',
-        icon: (
-            <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-5 w-5"
-                aria-hidden="true"
-            >
-                <rect x="2" y="6" width="14" height="12" rx="2" />
-                <path d="M16 10l6-3v10l-6-3" />
-            </svg>
-        ),
-    },
-    {
-        id: 'custom-software',
-        name: 'Custom Software & SaaS',
-        description: 'Custom software, SaaS products, mobile apps and websites built by our in-house team.',
-        points: [
-            'Custom software',
-            'SaaS product development',
-            'Android & iOS apps',
-            'Web design & development',
-            'CRM / ERP systems',
-        ],
-        gradientClass: 'from-[#818cf8] to-[#3730a3]',
-        icon: (
-            <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-5 w-5"
-                aria-hidden="true"
-            >
-                <path d="M8 6l-6 6 6 6M16 6l6 6-6 6" />
-            </svg>
-        ),
-    },
-    {
-        id: 'ai-automation',
-        name: 'AI & Automation',
-        description: 'AI chatbots, workflow automation and dashboards that cut manual work.',
-        points: [
-            'Website & WhatsApp AI chatbots',
-            'Business process automation',
-            'Analytics dashboards & MIS',
-            'Document data extraction',
-            'Automated reports',
-        ],
-        gradientClass: 'from-[#22d3ee] to-[#7c3aed]',
-        icon: (
-            <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-5 w-5"
-                aria-hidden="true"
-            >
-                <path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z" />
-                <path d="M19 17l.8 2.2L22 20l-2.2.8L19 23l-.8-2.2L16 20l2.2-.8z" />
-            </svg>
-        ),
-    },
-    {
-        id: 'cloud-it',
-        name: 'Cloud, IT & AMC',
-        description: 'IT infrastructure, cloud and DevOps, security, and ongoing managed support.',
-        points: [
-            'IT infrastructure set-up',
-            'Networking & Wi-Fi',
-            'Cloud deployment & DevOps',
-            'Email & domain set-up',
-            'Backups',
-        ],
-        gradientClass: 'from-[#38bdf8] to-[#4f46e5]',
-        icon: (
-            <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-5 w-5"
-                aria-hidden="true"
-            >
-                <path d="M17.5 19H7a5 5 0 1 1 1.3-9.8A6 6 0 0 1 19.6 11a4 4 0 0 1-2.1 8z" />
-            </svg>
-        ),
-    },
-];
 
-const ctaForService = (service: ServiceItem) => {
+export const SERVICE_IDS = [
+    'digital-marketing',
+    'content-creation',
+    'custom-software',
+    'ai-automation',
+    'cloud-it',
+] as const;
+
+// const services: ServiceItem[] = [
+//     {
+//         id: 'digital-marketing',
+//         name: 'BMB Digital Marketing',
+//         description: 'Meta ads, Google ads and SEO packages priced for Indian businesses.',
+//         points: [
+//             'Meta ads',
+//             'Google Search ads',
+//             'Performance Max',
+//             'YouTube ads',
+//             'Local SEO',
+//         ],
+//         gradientClass: 'from-[#ff8a4c] to-[#e11d48]',
+//         icon: (
+//             <svg
+//                 viewBox="0 0 24 24"
+//                 fill="none"
+//                 stroke="currentColor"
+//                 strokeWidth="1.8"
+//                 strokeLinecap="round"
+//                 strokeLinejoin="round"
+//                 className="h-5 w-5"
+//                 aria-hidden="true"
+//             >
+//                 <path d="M3 11v2a1 1 0 0 0 1 1h3l7 5V5L7 10H4a1 1 0 0 0-1 1z" />
+//                 <path d="M18 8a5 5 0 0 1 0 8" />
+//             </svg>
+//         ),
+//     },
+//     {
+//         id: 'content-creation',
+//         name: 'BMB Content Creation',
+//         description: 'Ad shoots, reels, product videos and posters that make your ads work.',
+//         points: [
+//             'Ad film shoots',
+//             'Reels & shorts',
+//             'Product videos',
+//             'Testimonial videos',
+//             'Posters & creatives',
+//         ],
+//         gradientClass: 'from-[#f0abfc] to-[#a21caf]',
+//         icon: (
+//             <svg
+//                 viewBox="0 0 24 24"
+//                 fill="none"
+//                 stroke="currentColor"
+//                 strokeWidth="1.8"
+//                 strokeLinecap="round"
+//                 strokeLinejoin="round"
+//                 className="h-5 w-5"
+//                 aria-hidden="true"
+//             >
+//                 <rect x="2" y="6" width="14" height="12" rx="2" />
+//                 <path d="M16 10l6-3v10l-6-3" />
+//             </svg>
+//         ),
+//     },
+//     {
+//         id: 'custom-software',
+//         name: 'Custom Software & SaaS',
+//         description: 'Custom software, SaaS products, mobile apps and websites built by our in-house team.',
+//         points: [
+//             'Custom software',
+//             'SaaS product development',
+//             'Android & iOS apps',
+//             'Web design & development',
+//             'CRM / ERP systems',
+//         ],
+//         gradientClass: 'from-[#818cf8] to-[#3730a3]',
+//         icon: (
+//             <svg
+//                 viewBox="0 0 24 24"
+//                 fill="none"
+//                 stroke="currentColor"
+//                 strokeWidth="1.8"
+//                 strokeLinecap="round"
+//                 strokeLinejoin="round"
+//                 className="h-5 w-5"
+//                 aria-hidden="true"
+//             >
+//                 <path d="M8 6l-6 6 6 6M16 6l6 6-6 6" />
+//             </svg>
+//         ),
+//     },
+//     {
+//         id: 'ai-automation',
+//         name: 'AI & Automation',
+//         description: 'AI chatbots, workflow automation and dashboards that cut manual work.',
+//         points: [
+//             'Website & WhatsApp AI chatbots',
+//             'Business process automation',
+//             'Analytics dashboards & MIS',
+//             'Document data extraction',
+//             'Automated reports',
+//         ],
+//         gradientClass: 'from-[#22d3ee] to-[#7c3aed]',
+//         icon: (
+//             <svg
+//                 viewBox="0 0 24 24"
+//                 fill="none"
+//                 stroke="currentColor"
+//                 strokeWidth="1.8"
+//                 strokeLinecap="round"
+//                 strokeLinejoin="round"
+//                 className="h-5 w-5"
+//                 aria-hidden="true"
+//             >
+//                 <path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z" />
+//                 <path d="M19 17l.8 2.2L22 20l-2.2.8L19 23l-.8-2.2L16 20l2.2-.8z" />
+//             </svg>
+//         ),
+//     },
+//     {
+//         id: 'cloud-it',
+//         name: 'Cloud, IT & AMC',
+//         description: 'IT infrastructure, cloud and DevOps, security, and ongoing managed support.',
+//         points: [
+//             'IT infrastructure set-up',
+//             'Networking & Wi-Fi',
+//             'Cloud deployment & DevOps',
+//             'Email & domain set-up',
+//             'Backups',
+//         ],
+//         gradientClass: 'from-[#38bdf8] to-[#4f46e5]',
+//         icon: (
+//             <svg
+//                 viewBox="0 0 24 24"
+//                 fill="none"
+//                 stroke="currentColor"
+//                 strokeWidth="1.8"
+//                 strokeLinecap="round"
+//                 strokeLinejoin="round"
+//                 className="h-5 w-5"
+//                 aria-hidden="true"
+//             >
+//                 <path d="M17.5 19H7a5 5 0 1 1 1.3-9.8A6 6 0 0 1 19.6 11a4 4 0 0 1-2.1 8z" />
+//             </svg>
+//         ),
+//     },
+// ];
+
+
+const services = CATALOG.filter(
+    (product) =>
+        product.kind === 'service' &&
+        SERVICE_IDS.includes(product.id as any),
+);
+
+const ctaForService = (service: CatalogProduct) => {
     return {
         label: 'Get a quote',
         msg: `Hi BMB team, I would like a quote for ${service.name}.`,
@@ -165,13 +182,13 @@ const ctaForService = (service: ServiceItem) => {
 
 const Service = () => {
 
-    const [active, setActive] = useState<ServiceItem | null>(null);
+    const [active, setActive] = useState<CatalogProduct | null>(null);
     const [isOpen, setIsOpen] = useState(false);
 
     // const cta = active ? ctaFor(active) : null;
     const cta = active ? ctaForService(active) : null;
 
-    const handleSelect = (service: ServiceItem) => {
+    const handleSelect = (service: CatalogProduct) => {
         setActive(service);
         setIsOpen(true);
     };
@@ -199,57 +216,103 @@ const Service = () => {
 
                 {/* Cards Grid */}
                 <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    {services.map((service, index) => (
-                        <motion.div
-                            key={service.id}
-                            initial={{ opacity: 0, y: 14 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.35, delay: index * 0.06 }}
-                            className="flex flex-col justify-between rounded-2xl border border-[#e4e9f3] bg-[#f8fafc] p-6 transition duration-200 hover:border-[#cbd5e1] hover:bg-white hover:shadow-lg"
-                        >
-                            <div>
-                                {/* Gradient Icon Container */}
-                                <div
+                    {services.map((service, index) => {
+                        const Icon = service.icon;
+
+                        return (
+
+                            <motion.div
+                                key={service.id}
+                                initial={{ opacity: 0, y: 14 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.35, delay: index * 0.06 }}
+                                className="flex flex-col justify-between rounded-2xl border border-[#e4e9f3] bg-[#f8fafc] p-6 transition duration-200 hover:border-[#cbd5e1] hover:bg-white hover:shadow-lg"
+                            >
+                                <div>
+                                    {/* Gradient Icon Container */}
+                                    {/* <div
                                     className={`flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br text-white shadow-sm ${service.gradientClass}`}
-                                >
-                                    {service.icon}
+                                > */}
+
+                                    {/* <div
+                                        className="flex h-11 w-11 items-center justify-center rounded-xl text-white shadow-sm"
+                                        style={{
+                                            backgroundImage: `linear-gradient(135deg, ${service.accent.from}, ${service.accent.to})`,
+                                        }}
+                                    >
+                                        {service.logo ? (
+                                            <img
+                                                src={service.logo}
+                                                alt=""
+                                                className="h-full w-full object-contain"
+                                            />
+                                        ) : (
+                                            <Icon
+                                                size={22}
+                                                aria-hidden="true"
+                                            />
+                                        )}
+                                    </div> */}
+
+
+                                    {service.logo ? (
+                                        <div className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-xl border border-slate-200 bg-white p-1.5 shadow-sm">
+                                            <img
+                                                src={service.logo}
+                                                alt=""
+                                                className="h-full w-full object-contain"
+                                            />
+                                        </div>
+                                    ) : (
+                                        <div
+                                            className="flex h-11 w-11 items-center justify-center rounded-xl text-white shadow-sm"
+                                            style={{
+                                                backgroundImage: `linear-gradient(135deg, ${service.accent.from}, ${service.accent.to})`,
+                                            }}
+                                        >
+                                            <Icon
+                                                size={22}
+                                                aria-hidden="true"
+                                            />
+                                        </div>
+                                    )}
+
+                                    <h3 className="mt-5 text-[17px] font-bold text-[#0a1433]">
+                                        {service.name}
+                                    </h3>
+
+                                    <p className="mt-2 text-[13px] leading-6 text-[#67728f]">
+                                        {service.tagline}
+                                    </p>
+
+                                    {/* Bullet Points */}
+                                    <ul className="mt-5 space-y-2">
+                                        {service.modules.map((modules) => (
+                                            <li
+                                                key={modules}
+                                                className="flex items-center gap-2.5 text-[13px] font-medium text-[#36425f]"
+                                            >
+                                                <span className="h-1.5 w-1.5 rounded-sm bg-orange-500" />
+                                                {modules}
+                                            </li>
+                                        ))}
+                                    </ul>
                                 </div>
 
-                                <h3 className="mt-5 text-[17px] font-bold text-[#0a1433]">
-                                    {service.name}
-                                </h3>
-
-                                <p className="mt-2 text-[13px] leading-6 text-[#67728f]">
-                                    {service.description}
-                                </p>
-
-                                {/* Bullet Points */}
-                                <ul className="mt-5 space-y-2">
-                                    {service.points.map((point) => (
-                                        <li
-                                            key={point}
-                                            className="flex items-center gap-2.5 text-[13px] font-medium text-[#36425f]"
-                                        >
-                                            <span className="h-1.5 w-1.5 rounded-sm bg-orange-500" />
-                                            {point}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-
-                            {/* Card Link */}
-                            <div className="mt-6 pt-2">
-                                <button
-                                    // href={`#${service.id}`}
-                                    onClick={() => handleSelect(service)}
-                                    className="inline-flex cursor-pointer items-center text-[13px] font-bold text-sky-700 transition hover:text-sky-800"
-                                >
-                                    Learn more →
-                                </button>
-                            </div>
-                        </motion.div>
-                    ))}
+                                {/* Card Link */}
+                                <div className="mt-6 pt-2">
+                                    <button
+                                        // href={`#${service.id}`}
+                                        onClick={() => handleSelect(service)}
+                                        className="inline-flex cursor-pointer items-center text-[13px] font-bold text-sky-700 transition hover:text-sky-800"
+                                    >
+                                        Learn more →
+                                    </button>
+                                </div>
+                            </motion.div>
+                        )
+                    })}
 
                     {/* Dark CTA Audit Card */}
                     <motion.div
